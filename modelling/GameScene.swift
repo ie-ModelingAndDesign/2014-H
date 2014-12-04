@@ -9,7 +9,7 @@
 import SpriteKit
 
 
-var moving: Int = 180
+var moving: Int = 30 //ここの60分の1をjumpとdownのdurationに代入
 var jp: Int = 0
 var time:Int = moving
 
@@ -28,8 +28,7 @@ class GameScene: SKScene {
 
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
-            
-            // 移動時間を3秒に指定しています。
+
             if(jp == 0){
                 if(time >= moving){
                     jump()
@@ -52,14 +51,14 @@ class GameScene: SKScene {
     }
 
     func jump(){
-        afterpos = CGPointMake(300,600)
-        let travelTime = SKAction.moveTo(afterpos, duration: 3)
+        afterpos = CGPointMake(300,500)
+        let travelTime = SKAction.moveTo(afterpos, duration: 0.5)
         self.player.runAction(travelTime)
     }
 
     func down(){
         afterpos = CGPointMake(300,300)
-        let travelTime2 = SKAction.moveTo(afterpos, duration: 3)
+        let travelTime2 = SKAction.moveTo(afterpos, duration: 0.5)
         self.player.runAction(travelTime2)
     }
 }
