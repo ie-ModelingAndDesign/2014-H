@@ -31,7 +31,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(moving)
 
         // setup physics
-        self.physicsWorld.gravity = CGVectorMake( -5.0, 0.0 )
+        self.physicsWorld.gravity = CGVectorMake( -10.0, 0.0 )
         self.physicsWorld.contactDelegate = self
 
 
@@ -50,8 +50,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let flap = SKAction.repeatActionForever(anim)
 
         player = SKSpriteNode(texture: playerTexture1)
-        player.setScale(2.0)
-        player.position = CGPoint(x: self.frame.size.width * 0.35, y:self.frame.size.height * 0.6)
+        player.setScale(1.0)
+        player.position = CGPoint(x: self.frame.size.width * 0.30, y:self.frame.size.height * 0.8)
         jumpNow = player.position
         player.runAction(flap)
 
@@ -86,7 +86,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 player.physicsBody?.dynamic = true
                 let location = touch.locationInNode(self)
 
-                player.physicsBody?.velocity = CGVectorMake(700, 0)
+                player.physicsBody?.velocity = CGVectorMake(600, 0)
                 player.physicsBody?.applyImpulse(CGVectorMake(0, 0))
 
                 let playerTexture1 = SKTexture(imageNamed: "player-04")
@@ -97,6 +97,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let stop = SKAction.animateWithTextures([playerTexture1, playerTexture2], timePerFrame: 0.05)
                 let dlap = SKAction.repeatActionForever(stop)
                 player.runAction(dlap)
+
                 check = 0
             }
         }else if canRestart {
