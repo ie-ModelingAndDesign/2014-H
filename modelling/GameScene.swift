@@ -31,27 +31,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(moving)
 
         // setup physics
-        self.physicsWorld.gravity = CGVectorMake( -10.0, 0.0 )
+        self.physicsWorld.gravity = CGVectorMake( 0, -9.8 )
         self.physicsWorld.contactDelegate = self
 
 
         // setup our player
-        let playerTexture1 = SKTexture(imageNamed: "player-01")
+        let playerTexture1 = SKTexture(imageNamed: "sima1")
         playerTexture1.filteringMode = .Nearest
-        let playerTexture2 = SKTexture(imageNamed: "player-02")
-        playerTexture2.filteringMode = .Nearest
-        let playerTexture3 = SKTexture(imageNamed: "player-03")
-        playerTexture1.filteringMode = .Nearest
-        let playerTexture4 = SKTexture(imageNamed: "player-04")
+        let playerTexture2 = SKTexture(imageNamed: "sima2")
         playerTexture2.filteringMode = .Nearest
 
-
-        let anim = SKAction.animateWithTextures([playerTexture1, playerTexture2, playerTexture3, playerTexture4], timePerFrame: 0.05)
+        let anim = SKAction.animateWithTextures([playerTexture1, playerTexture2], timePerFrame: 0.05)
         let flap = SKAction.repeatActionForever(anim)
 
         player = SKSpriteNode(texture: playerTexture1)
-        player.setScale(1.0)
-        player.position = CGPoint(x: self.frame.size.width * 0.30, y:self.frame.size.height * 0.8)
+        player.setScale(0.2)
+        player.position = CGPoint(x: self.frame.size.width * 0.20, y:self.frame.size.height * 0.40)
         jumpNow = player.position
         player.runAction(flap)
 
@@ -86,12 +81,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 player.physicsBody?.dynamic = true
                 let location = touch.locationInNode(self)
 
-                player.physicsBody?.velocity = CGVectorMake(600, 0)
+                player.physicsBody?.velocity = CGVectorMake(0, 550)
                 player.physicsBody?.applyImpulse(CGVectorMake(0, 0))
 
-                let playerTexture1 = SKTexture(imageNamed: "player-04")
+                let playerTexture1 = SKTexture(imageNamed: "sima1")
                 playerTexture1.filteringMode = .Nearest
-                let playerTexture2 = SKTexture(imageNamed: "player-02")
+                let playerTexture2 = SKTexture(imageNamed: "sima1")
                 playerTexture2.filteringMode = .Nearest
 
                 let stop = SKAction.animateWithTextures([playerTexture1, playerTexture2], timePerFrame: 0.05)
@@ -140,12 +135,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }*/
 
         /* Called before each frame is rendered */
-        player.zRotation = clamp( -1, max: 0.5, value: player.physicsBody!.velocity.dy * ( player.physicsBody!.velocity.dy < 0 ? 0.003 : 0.001 ) )
+        /*
+        player.zRotation = clamp( -1, max: 0.5, value: player.physicsBody!.velocity.dy * ( player.physicsBody!.velocity.dy < 0 ? 0.00 : 0.00 ) )
+        */
 
    /*     if(player.position.x < jumpNow.x){
             player.physicsBody?.dynamic = false
         }*/
-        if(player.position.x < jumpNow.x){
+        if(player.position.y < jumpNow.y){
             player.physicsBody?.dynamic = false
             self.resetScene()
         }
@@ -168,7 +165,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     func resetScene (){
         // Move player to original position and reset velocity
-        player.position.x = jumpNow.x
+        player.position.y = jumpNow.y
         player.physicsBody?.velocity = CGVectorMake( 0, 0 )
         player.physicsBody?.collisionBitMask = worldCategory
         player.speed = 1.0
@@ -180,17 +177,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Restart animation
         moving.speed = 1
 
-        let playerTexture1 = SKTexture(imageNamed: "player-01")
+        let playerTexture1 = SKTexture(imageNamed: "sima1")
         playerTexture1.filteringMode = .Nearest
-        let playerTexture2 = SKTexture(imageNamed: "player-02")
-        playerTexture2.filteringMode = .Nearest
-        let playerTexture3 = SKTexture(imageNamed: "player-03")
-        playerTexture1.filteringMode = .Nearest
-        let playerTexture4 = SKTexture(imageNamed: "player-04")
+        let playerTexture2 = SKTexture(imageNamed: "sima2")
         playerTexture2.filteringMode = .Nearest
 
-
-        let anim = SKAction.animateWithTextures([playerTexture1, playerTexture2, playerTexture3, playerTexture4], timePerFrame: 0.05)
+        let anim = SKAction.animateWithTextures([playerTexture1, playerTexture2], timePerFrame: 0.05)
         let flap = SKAction.repeatActionForever(anim)
         player.runAction(flap)
 
