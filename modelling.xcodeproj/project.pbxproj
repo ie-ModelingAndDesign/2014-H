@@ -18,6 +18,12 @@
 		6C17A70A1A25D1A0004B2586 /* bou.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C17A7091A25D1A0004B2586 /* bou.png */; };
 		6C17A70E1A25EA00004B2586 /* kuro.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C17A70D1A25EA00004B2586 /* kuro.png */; };
 		6C17A7101A25EA34004B2586 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C17A70F1A25EA34004B2586 /* white.png */; };
+		6CB9F2161A38887B00C0D8B3 /* player-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CB9F2121A38887A00C0D8B3 /* player-01.png */; };
+		6CB9F2171A38887B00C0D8B3 /* player-02.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CB9F2131A38887A00C0D8B3 /* player-02.png */; };
+		6CB9F2181A38887B00C0D8B3 /* player-03.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CB9F2141A38887A00C0D8B3 /* player-03.png */; };
+		6CB9F2191A38887B00C0D8B3 /* player-04.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CB9F2151A38887A00C0D8B3 /* player-04.png */; };
+		6CB9F21C1A39972F00C0D8B3 /* sima1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CB9F21A1A39972F00C0D8B3 /* sima1.png */; };
+		6CB9F21D1A39972F00C0D8B3 /* sima2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CB9F21B1A39972F00C0D8B3 /* sima2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +52,12 @@
 		6C17A7091A25D1A0004B2586 /* bou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bou.png; sourceTree = "<group>"; };
 		6C17A70D1A25EA00004B2586 /* kuro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kuro.png; sourceTree = "<group>"; };
 		6C17A70F1A25EA34004B2586 /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
+		6CB9F2121A38887A00C0D8B3 /* player-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-01.png"; sourceTree = "<group>"; };
+		6CB9F2131A38887A00C0D8B3 /* player-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-02.png"; sourceTree = "<group>"; };
+		6CB9F2141A38887A00C0D8B3 /* player-03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-03.png"; sourceTree = "<group>"; };
+		6CB9F2151A38887A00C0D8B3 /* player-04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-04.png"; sourceTree = "<group>"; };
+		6CB9F21A1A39972F00C0D8B3 /* sima1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sima1.png; sourceTree = "<group>"; };
+		6CB9F21B1A39972F00C0D8B3 /* sima2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sima2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +106,12 @@
 				6C17A6EB1A25D12C004B2586 /* Main.storyboard */,
 				6C17A6EE1A25D12C004B2586 /* Images.xcassets */,
 				6C17A6F01A25D12C004B2586 /* LaunchScreen.xib */,
+				6CB9F2121A38887A00C0D8B3 /* player-01.png */,
+				6CB9F2131A38887A00C0D8B3 /* player-02.png */,
+				6CB9F2141A38887A00C0D8B3 /* player-03.png */,
+				6CB9F2151A38887A00C0D8B3 /* player-04.png */,
+				6CB9F21A1A39972F00C0D8B3 /* sima1.png */,
+				6CB9F21B1A39972F00C0D8B3 /* sima2.png */,
 				6C17A7091A25D1A0004B2586 /* bou.png */,
 				6C17A70D1A25EA00004B2586 /* kuro.png */,
 				6C17A70F1A25EA34004B2586 /* white.png */,
@@ -208,10 +226,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C17A70A1A25D1A0004B2586 /* bou.png in Resources */,
+				6CB9F2181A38887B00C0D8B3 /* player-03.png in Resources */,
 				6C17A6F21A25D12C004B2586 /* LaunchScreen.xib in Resources */,
 				6C17A70E1A25EA00004B2586 /* kuro.png in Resources */,
+				6CB9F2191A38887B00C0D8B3 /* player-04.png in Resources */,
+				6CB9F2161A38887B00C0D8B3 /* player-01.png in Resources */,
+				6CB9F2171A38887B00C0D8B3 /* player-02.png in Resources */,
+				6CB9F21C1A39972F00C0D8B3 /* sima1.png in Resources */,
 				6C17A6EF1A25D12C004B2586 /* Images.xcassets in Resources */,
 				6C17A6E61A25D12B004B2586 /* GameScene.sks in Resources */,
+				6CB9F21D1A39972F00C0D8B3 /* sima2.png in Resources */,
 				6C17A7101A25EA34004B2586 /* white.png in Resources */,
 				6C17A6ED1A25D12C004B2586 /* Main.storyboard in Resources */,
 			);
@@ -425,6 +449,7 @@
 				6C17A7031A25D12C004B2586 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6C17A7041A25D12C004B2586 /* Build configuration list for PBXNativeTarget "modellingTests" */ = {
 			isa = XCConfigurationList;
@@ -433,6 +458,7 @@
 				6C17A7061A25D12C004B2586 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

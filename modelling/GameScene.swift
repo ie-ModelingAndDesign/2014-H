@@ -8,26 +8,100 @@
 
 import SpriteKit
 
-
+/*
 var moving: Int = 30 //ここの60分の1をjumpとdownのdurationに代入
 var jp: Int = 0
-var time:Int = moving
+var time:Int = moving*/
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     var player : SKSpriteNode!
-    var afterpos: CGPoint!
+//    var afterpos: CGPoint!
+    var moving:SKNode!
+    var jumpNow: CGPoint!
+    var canRestart = Bool()
+
+    let playerCategory: UInt32 = 1 << 0
+    let worldCategory: UInt32 = 1 << 1
+
+    var check = 1
+
     override func didMoveToView(view: SKView) {
+        canRestart = false
+        moving = SKNode()
+        self.addChild(moving)
+
+        // setup physics
+        self.physicsWorld.gravity = CGVectorMake( 0, -9.8 )
+        self.physicsWorld.contactDelegate = self
+
+
+        // setup our player
+        let playerTexture1 = SKTexture(imageNamed: "sima1")
+        playerTexture1.filteringMode = .Nearest
+        let playerTexture2 = SKTexture(imageNamed: "sima2")
+        playerTexture2.filteringMode = .Nearest
+
+        let anim = SKAction.animateWithTextures([playerTexture1, playerTexture2], timePerFrame: 0.05)
+        let flap = SKAction.repeatActionForever(anim)
+
+        player = SKSpriteNode(texture: playerTexture1)
+        player.setScale(0.2)
+        player.position = CGPoint(x: self.frame.size.width * 0.20, y:self.frame.size.height * 0.40)
+        jumpNow = player.position
+        player.runAction(flap)
+
+        player.physicsBody = SKPhysicsBody(circleOfRadius: player.size.height / 2.0)
+        player.physicsBody?.dynamic = false
+        player.physicsBody?.allowsRotation = false
+
+        player.physicsBody?.categoryBitMask = playerCategory
+        player.physicsBody?.collisionBitMask = worldCategory
+        player.physicsBody?.contactTestBitMask = worldCategory
+
+        self.addChild(player)
 
         //プレイヤーとなるキャラクター画像
-        self.player = SKSpriteNode(imageNamed:"bou")
-        self.addChild(player)
-        self.player.position = CGPointMake(300,300)
-        afterpos = CGPointMake(300,600)
+//        self.player = SKSpriteNode(imageNamed:"bou")
+//        self.addChild(player)
+//        self.player.position = CGPointMake(300,300)
+//        player.size = CGSizeMake(40, 40)
+//        afterpos = CGPointmake(300,600)
+//      player.physicsBody = SKPhysicsBody(circleOfRadius: 16)
+//      player.physicsBody?.dynamic = false
+//      physicsWorld.gravity = CGVectorMake(0,-0.5)
+
 
     }
 
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        for touch: AnyObject in touches {
+        if (moving.speed > 0)  {
+//        player.position.x == jumpNow.x + 1
+            if(check == 1){
+            for touch: AnyObject in touches {
+                player.physicsBody?.dynamic = true
+                let location = touch.locationInNode(self)
+
+                player.physicsBody?.velocity = CGVectorMake(0, 550)
+                player.physicsBody?.applyImpulse(CGVectorMake(0, 0))
+
+                let playerTexture1 = SKTexture(imageNamed: "sima1")
+                playerTexture1.filteringMode = .Nearest
+                let playerTexture2 = SKTexture(imageNamed: "sima1")
+                playerTexture2.filteringMode = .Nearest
+
+                let stop = SKAction.animateWithTextures([playerTexture1, playerTexture2], timePerFrame: 0.05)
+                let dlap = SKAction.repeatActionForever(stop)
+                player.runAction(dlap)
+
+                check = 0
+            }
+        }else if canRestart {
+           self.resetScene()
+        }
+        }
+
+/*        for touch: AnyObject in touches {
+
 
             if(jp == 0){
                 if(time >= moving){
@@ -36,29 +110,82 @@ class GameScene: SKScene {
                     time = 0
                 }
             }
-        }
-    }
+        }*/
+}
 
-    override func update(currentTime: CFTimeInterval) {
-        time += 1
+
+        func clamp(min: CGFloat, max: CGFloat, value: CGFloat) -> CGFloat {
+            if( value > max ) {
+                return max
+            } else if( value < min ) {
+                return min
+            } else {
+                return value
+            }
+        }
+
+     override func update(currentTime: CFTimeInterval) {
+/*        time += 1
         if(jp == 1){
             if(time >= moving){
                 down()
                 jp = 0
                 time = 0
             }
+        }*/
+
+        /* Called before each frame is rendered */
+        /*
+        player.zRotation = clamp( -1, max: 0.5, value: player.physicsBody!.velocity.dy * ( player.physicsBody!.velocity.dy < 0 ? 0.00 : 0.00 ) )
+        */
+
+   /*     if(player.position.x < jumpNow.x){
+            player.physicsBody?.dynamic = false
+        }*/
+        if(player.position.y < jumpNow.y){
+            player.physicsBody?.dynamic = false
+            self.resetScene()
         }
+        
     }
 
     func jump(){
-        afterpos = CGPointMake(300,500)
+/*        afterpos = CGPointMake(300,500)
         let travelTime = SKAction.moveTo(afterpos, duration: 0.5)
         self.player.runAction(travelTime)
+         player.physicsBody?.dynamic = false*/
     }
 
     func down(){
-        afterpos = CGPointMake(300,300)
+/*        afterpos = CGPointMake(300,300)
         let travelTime2 = SKAction.moveTo(afterpos, duration: 0.5)
-        self.player.runAction(travelTime2)
+        self.player.runAction(travelTime2)*/
+    }
+
+
+    func resetScene (){
+        // Move player to original position and reset velocity
+        player.position.y = jumpNow.y
+        player.physicsBody?.velocity = CGVectorMake( 0, 0 )
+        player.physicsBody?.collisionBitMask = worldCategory
+        player.speed = 1.0
+        player.zRotation = 0.0
+
+        // Reset _canRestart
+        canRestart = false
+
+        // Restart animation
+        moving.speed = 1
+
+        let playerTexture1 = SKTexture(imageNamed: "sima1")
+        playerTexture1.filteringMode = .Nearest
+        let playerTexture2 = SKTexture(imageNamed: "sima2")
+        playerTexture2.filteringMode = .Nearest
+
+        let anim = SKAction.animateWithTextures([playerTexture1, playerTexture2], timePerFrame: 0.05)
+        let flap = SKAction.repeatActionForever(anim)
+        player.runAction(flap)
+
+        check = 1
     }
 }
