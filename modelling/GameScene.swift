@@ -189,3 +189,146 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         check = 1
     }
 }
+
+/*
+//
+//  GameScene.swift
+//  atari
+//
+//  Created by Arakaki Daichi on 2014/12/04.
+//  Copyright (c) 2014年 Arakaki Daichi. All rights reserved.
+//
+
+import SpriteKit
+
+class GameScene: SKScene, SKPhysicsContactDelegate {
+
+// カテゴリを用意しておく。
+let redCategory: UInt32 = 0x1 << 0    //赤のブロックのカテゴリー（障害物に）
+let greenCategory: UInt32 = 0x1 << 1  //緑のブロックのカテゴリー（主人公に）
+
+var gameover : SKSpriteNode!
+var Hero : SKSpriteNode!
+var butu : SKSpriteNode!
+
+
+
+
+
+
+override func didMoveToView(view: SKView) {
+
+// デリゲートをselfにしておく。
+self.physicsWorld.contactDelegate = self
+
+self.size = view.bounds.size
+self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
+self.physicsWorld.gravity = CGVectorMake(0.0, -3.0)
+
+
+self.gameover = SKSpriteNode(imageNamed: "AA.jpg")
+self.addChild(gameover)
+self.gameover.position = CGPointMake(3333333,2222222)
+
+self.Hero = SKSpriteNode(imageNamed: "a.png")
+self.addChild(Hero)
+self.Hero.position = CGPointMake(3333333,2222222)
+
+self.butu = SKSpriteNode(imageNamed: "b.png")
+self.addChild(butu)
+self.butu.position = CGPointMake(3333333,2222222)
+
+
+// 赤い正方形を真ん中に固定しておく。ここを障害物に書き換える
+
+
+
+
+
+
+
+let redSquare = SKSpriteNode(color: UIColor.redColor(), size: CGSizeMake(50, 50)) //赤い四角
+
+redSquare.position = CGPoint(
+x: CGRectGetMidX(self.frame),
+y: CGRectGetMidY(self.frame)
+)
+
+redSquare.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(50, 50)) //当たり判定
+
+
+redSquare.physicsBody?.affectedByGravity = false
+redSquare.physicsBody?.dynamic = false
+
+
+// カテゴリを設定する。
+redSquare.physicsBody?.categoryBitMask = redCategory
+redSquare.physicsBody?.contactTestBitMask = greenCategory
+
+self.addChild(redSquare)
+}
+
+override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+
+
+
+// タップする度に、その位置にグリーンの長方形を出す。ここをキャラクターに書き換える
+for touch in touches {
+
+let location = touch.locationInNode(self)
+let greenRectangle = SKSpriteNode(color: UIColor.greenColor(), size: CGSizeMake(50, 100))//青い四角
+
+greenRectangle.position = location
+greenRectangle.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(50, 100))//当たり判定
+
+
+// カテゴリを設定する。
+greenRectangle.physicsBody?.categoryBitMask = greenCategory
+greenRectangle.physicsBody?.contactTestBitMask = redCategory
+
+self.addChild(greenRectangle)
+}
+
+}
+
+override func update(currentTime: CFTimeInterval) {
+}
+
+
+
+
+
+
+// 衝突したとき。ここをいろいろ表示出来るようにする
+func didBeginContact(contact: SKPhysicsContact!) {
+
+var firstBody, secondBody: SKPhysicsBody
+
+// firstを赤、secondを緑とする。
+if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+firstBody = contact.bodyA
+secondBody = contact.bodyB
+} else {
+firstBody = contact.bodyB
+secondBody = contact.bodyA
+}
+
+// 赤と緑が接したときの処理。ここをキャラクターと障害物の接触したときのアクションにする
+if firstBody.categoryBitMask & redCategory != 0 &&
+secondBody.categoryBitMask & greenCategory != 0 {
+
+
+self.gameover.position.x = 250
+self.gameover.position.y = 300;//ここを書き換える
+
+}
+}
+}
+
+
+
+
+
+
+
+*/
