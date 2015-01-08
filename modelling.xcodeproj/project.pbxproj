@@ -24,6 +24,7 @@
 		6CB9F2191A38887B00C0D8B3 /* player-04.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CB9F2151A38887A00C0D8B3 /* player-04.png */; };
 		6CB9F21C1A39972F00C0D8B3 /* sima1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CB9F21A1A39972F00C0D8B3 /* sima1.png */; };
 		6CB9F21D1A39972F00C0D8B3 /* sima2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CB9F21B1A39972F00C0D8B3 /* sima2.png */; };
+		EC0B6CD31A4BA6DF00AE90D5 /* Object.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0B6CD21A4BA6DF00AE90D5 /* Object.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		6CB9F2151A38887A00C0D8B3 /* player-04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-04.png"; sourceTree = "<group>"; };
 		6CB9F21A1A39972F00C0D8B3 /* sima1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sima1.png; sourceTree = "<group>"; };
 		6CB9F21B1A39972F00C0D8B3 /* sima2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sima2.png; sourceTree = "<group>"; };
+		EC0B6CD21A4BA6DF00AE90D5 /* Object.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Object.png; path = ../../Desktop/Object.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				6C17A6EB1A25D12C004B2586 /* Main.storyboard */,
 				6C17A6EE1A25D12C004B2586 /* Images.xcassets */,
 				6C17A6F01A25D12C004B2586 /* LaunchScreen.xib */,
+				EC0B6CD21A4BA6DF00AE90D5 /* Object.png */,
 				6CB9F2121A38887A00C0D8B3 /* player-01.png */,
 				6CB9F2131A38887A00C0D8B3 /* player-02.png */,
 				6CB9F2141A38887A00C0D8B3 /* player-03.png */,
@@ -237,6 +240,7 @@
 				6C17A6E61A25D12B004B2586 /* GameScene.sks in Resources */,
 				6CB9F21D1A39972F00C0D8B3 /* sima2.png in Resources */,
 				6C17A7101A25EA34004B2586 /* white.png in Resources */,
+				EC0B6CD31A4BA6DF00AE90D5 /* Object.png in Resources */,
 				6C17A6ED1A25D12C004B2586 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
