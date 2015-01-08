@@ -14,6 +14,13 @@ var jp: Int = 0
 var time:Int = moving*/
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    //Takamiyagi Wall Move 変数? 指定
+    var Wall1 : SKSpriteNode!
+    var Wall2 : SKSpriteNode!
+    var movepos1: CGPoint!
+    var movepos2: CGPoint!
+    
+    
     var player : SKSpriteNode!
 //    var afterpos: CGPoint!
     var moving:SKNode!
@@ -59,6 +66,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody?.contactTestBitMask = worldCategory
 
         self.addChild(player)
+        
+        
+        //Takamiyagi Wall(障害物)の設定
+        let WallTexture1 = SKTexture(imageNamed: "Object")                                          //使用する画像
+        Wall1 = SKSpriteNode(texture: WallTexture1)
+        Wall1.setScale(0.4)                                                                         //使用する画像の大きさ（元の画像の大きさの割合）
+        Wall1.position = CGPoint(x: self.frame.size.width * 1.20, y:self.frame.size.height * 0.40)  //使用する画像の初期位置
+        self.addChild(Wall1)
+        
+        let WallTexture2 = SKTexture(imageNamed: "Object")
+        Wall2 = SKSpriteNode(texture: WallTexture2)
+        Wall2.setScale(0.4)
+        Wall2.position = CGPoint(x: self.frame.size.width * 1.20, y:self.frame.size.height * 0.40)
+        self.addChild(Wall2)
+        
+        
+    
 
         //プレイヤーとなるキャラクター画像
 //        self.player = SKSpriteNode(imageNamed:"bou")
@@ -125,6 +149,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
 
      override func update(currentTime: CFTimeInterval) {
+        
+        //　Takamiyagi
+        if(Wall1.position.x >= self.frame.size.width * 0.0){
+            movepos1 = CGPoint(x: self.frame.size.width * -1.0, y:self.frame.size.height * 0.40)
+            let travelTime = SKAction.moveTo(movepos1, duration: 2.0)
+            self.Wall1.runAction(travelTime)
+        }
+        else{
+            Wall1.position = CGPoint(x: self.frame.size.width * 1.20, y:self.frame.size.height * 0.40)
+        }
+        
+        
+        if(Wall2.position.x >= self.frame.size.width * 0.1){
+            movepos2 = CGPoint(x: self.frame.size.width * -1.0, y:self.frame.size.height * 0.40)
+            let travelTime = SKAction.moveTo(movepos2, duration: 2.0)
+            self.Wall2.runAction(travelTime)
+        }
+        else{
+            Wall2.position = CGPoint(x: self.frame.size.width * 1.20, y:self.frame.size.height * 0.40)
+        }
+        
+        
+        
 /*        time += 1
         if(jp == 1){
             if(time >= moving){
