@@ -1,5 +1,5 @@
 //
-//  TitleScene.swift
+//  ScoreScene.swift
 //  modelling
 //
 //  Created by 小渡広和 on 2015/02/22.
