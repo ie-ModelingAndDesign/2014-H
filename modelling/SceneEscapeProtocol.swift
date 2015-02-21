@@ -6,4 +6,10 @@
 //  Copyright (c) 2015年 odo. All rights reserved.
 //
 
-import Foundation
+import SpriteKit
+
+protocol SceneEscapeProtocol {
+
+    func sceneEscape(scene: SKScene)
+
+}

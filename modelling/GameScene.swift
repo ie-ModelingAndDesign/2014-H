@@ -10,6 +10,9 @@ import SpriteKit
 
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+
+    var delegate_escape: SceneEscapeProtocol?
+
     //chida
     let redCategory: UInt32 = 0x1 << 0    //赤のブロックのカテゴリー（障害物に）
     let greenCategory: UInt32 = 0x1 << 1  //緑のブロックのカテゴリー（主人公に）
@@ -45,7 +48,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let worldCategory: UInt32 = 1 << 1
 
     var check = 1
-    
     
     //naotarou
     var qed = 0
@@ -162,10 +164,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(yellowSquare)
 
         
-        
-        
-        
-        
         //Takamiyagi Wall(障害物)の設定
         
 //        let WallTexture1 = SKTexture(imageNamed: "Object")                                          //使用する画像
@@ -247,7 +245,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }else if canRestart {
            self.resetScene()
         }
-        }
+    }
 
 }
 

@@ -7,3 +7,17 @@
 //
 
 import Foundation
+import SpriteKit
+import UIKit
+
+class ScoreScene: SKScene {
+
+    var delegate_escape: SceneEscapeProtocol?
+    
+    override func didMoveToView(view: SKView) {
+        let backGround = SKSpriteNode(imageNamed:"Result.png")
+        backGround.size = frame.size
+        self.addChild(backGround)
+        backGround.position = CGPointMake(500,300)
+    }
+}
