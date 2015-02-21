@@ -144,7 +144,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         yellowSquare.position.x = self.frame.size.width * 0.2 //場所
-        yellowSquare.position.y = self.frame.size.height * 0.40 //場所
+        yellowSquare.position.y = self.frame.size.height * 0.16 - 30 //場所
         
         self.yellowSquare.zPosition = 10
         
@@ -185,6 +185,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         Wall2 = SKSpriteNode(texture: WallTexture2)
         Wall2.setScale(0.4)
         Wall2.position = CGPoint(x: self.frame.size.width * 0.9, y:self.frame.size.height * 0.15)
+        Wall2.zPosition = 1
         self.addChild(Wall2)
         
         
@@ -473,7 +474,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.addChild(myLabel)*/
                 
               //  if(player.position.y >= self.frame.size.width * 0.8)
-                if player.position.y <= self.frame.size.height * 0.275{
+                if player.position.y <= (self.frame.size.height * 0.2 + 0){
                     let myLabel = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
                     myLabel.text = "ゲームオーバー";
                     myLabel.fontSize = 48;
@@ -481,14 +482,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     myLabel.position = CGPoint(x: self.frame.size.width * 0.5, y:self.frame.size.height * 0.5)
                     self.addChild(myLabel)
                 }
-                else if player.position.y <= self.frame.size.height * 0.4{
+               /* else if player.position.y <= self.frame.size.height * 0.4{
                     let myLabel2 = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
                     myLabel2.text = "減速";
                     myLabel2.fontSize = 48;
                     myLabel2.fontColor = UIColor.redColor()
                     myLabel2.position = CGPoint(x: self.frame.size.width * 0.5, y:self.frame.size.height * 0.8)
                     self.addChild(myLabel2)
-                }
+                }*/
         }
             
     /*    else if thirdBody.categoryBitMask & yellowCategory != 0 && secondBody.categoryBitMask & greenCategory != 0 {
