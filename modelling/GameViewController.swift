@@ -93,18 +93,6 @@ class GameViewController: UIViewController, SceneEscapeProtocol {
         }
     }
 
-    func sceneEscape2(scene: SKScene) {
-        if scene.isKindOfClass(GameScene) {
-            goScore()
-        }
-        if scene.isKindOfClass(TitleScene) {
-            goGame()
-        }
-        if scene.isKindOfClass(ScoreScene) {
-            goTitle()
-        }
-    }
-
     override func shouldAutorotate() -> Bool {
         return true
     }

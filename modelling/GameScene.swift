@@ -7,7 +7,6 @@
 //
 
 import SpriteKit
-
 import AVFoundation//追加
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -56,6 +55,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var backGround : SKSpriteNode!
     var w : CGFloat!
     var h : CGFloat!
+
+    var nowScene : SKScene?
+
+    var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
 
     override func didMoveToView(view: SKView) {
         
@@ -613,11 +616,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     let myLabel = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
                     myLabel.text = "ゲームオーバー \(score)";
                     //myLabel.text = "ゲームオーバー";
+                    appDelegate.data = score
                     delegate_escape!.sceneEscape(self)
                     myLabel.fontSize = 48;
                     myLabel.fontColor = UIColor.redColor()
                     myLabel.position = CGPoint(x: self.frame.size.width * 0.5, y:self.frame.size.height * 0.5)
                     self.addChild(myLabel)
+
+                    delegate_escape!.sceneEscape(self)
                 }
                 else if (player.position.y - 30) <= self.frame.size.height * 0.3{
                     score = score - 10
