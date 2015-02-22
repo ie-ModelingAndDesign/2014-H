@@ -20,6 +20,6 @@ class ScoreScene: SKScene {
         backGround.size = frame.size
         self.addChild(backGround)
         backGround.position = CGPointMake(500,300)
-        println(appDelegate.data)
+        println("スコアは\(appDelegate.data)")
     }
 }
