@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21DA0DDF1A99034900C31042 /* harunopayapaya.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 21DA0DDE1A99034900C31042 /* harunopayapaya.mp3 */; };
 		6C17A6E41A25D12B004B2586 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C17A6E31A25D12B004B2586 /* AppDelegate.swift */; };
 		6C17A6E61A25D12B004B2586 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 6C17A6E51A25D12B004B2586 /* GameScene.sks */; };
 		6C17A6E81A25D12B004B2586 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C17A6E71A25D12B004B2586 /* GameScene.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		21DA0DDE1A99034900C31042 /* harunopayapaya.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = harunopayapaya.mp3; sourceTree = "<group>"; };
 		6C17A6DE1A25D12B004B2586 /* modelling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = modelling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C17A6E21A25D12B004B2586 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C17A6E31A25D12B004B2586 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				6C17A6E31A25D12B004B2586 /* AppDelegate.swift */,
 				6C17A6E51A25D12B004B2586 /* GameScene.sks */,
 				6C17A6E71A25D12B004B2586 /* GameScene.swift */,
+				21DA0DDE1A99034900C31042 /* harunopayapaya.mp3 */,
 				6CC32A211A98D50500495AC6 /* TitleScene.swift */,
 				6CC32A291A98E05300495AC6 /* ScoreScene.swift */,
 				6C17A6E91A25D12C004B2586 /* GameViewController.swift */,
@@ -243,6 +246,7 @@
 				6C17A70A1A25D1A0004B2586 /* bou.png in Resources */,
 				6C17A6F21A25D12C004B2586 /* LaunchScreen.xib in Resources */,
 				6CC32A2C1A98E0CA00495AC6 /* Result.png in Resources */,
+				21DA0DDF1A99034900C31042 /* harunopayapaya.mp3 in Resources */,
 				6CC32A281A98DBD300495AC6 /* Start.png in Resources */,
 				6C17A70E1A25EA00004B2586 /* kuro.png in Resources */,
 				6CB9F21C1A39972F00C0D8B3 /* sima1.png in Resources */,
