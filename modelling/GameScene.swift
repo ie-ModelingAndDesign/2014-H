@@ -680,12 +680,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         score = 0
                     }
 
-                    let myLabel2 = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
+/*                    let myLabel2 = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
                     myLabel2.text = "減速";
                     myLabel2.fontSize = 48;
                     myLabel2.fontColor = UIColor.redColor()
                     myLabel2.position = CGPoint(x: self.frame.size.width * 0.5, y:self.frame.size.height * 0.8)
-                    self.addChild(myLabel2)
+                    self.addChild(myLabel2)*/
                     
                     player_fukidasi()
                 }
