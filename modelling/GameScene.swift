@@ -25,6 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var Wall2 : SKSpriteNode!
     var timecount = 0
     var score = 0
+    var count = 0
     
     //takamiyagi chida tuika
     var Wallred1 : SKSpriteNode!
@@ -616,6 +617,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     let myLabel = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
                     myLabel.text = "ゲームオーバー \(score)";
                     //myLabel.text = "ゲームオーバー";
+                    score -= count
                     appDelegate.data = score
                     delegate_escape!.sceneEscape(self)
                     myLabel.fontSize = 48;
@@ -626,7 +628,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     delegate_escape!.sceneEscape(self)
                 }
                 else if (player.position.y - 30) <= self.frame.size.height * 0.3{
-                    score = score - 10
+                   // score = score - 10
+                    count += 1
                     if(score < 0){
                         score = 0
                     }

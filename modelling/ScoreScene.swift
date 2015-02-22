@@ -14,6 +14,8 @@ class ScoreScene: SKScene {
 
     var delegate_escape: SceneEscapeProtocol?
     var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+
+    let myLabel = SKLabelNode(fontNamed:"Chalkduster")
     
     override func didMoveToView(view: SKView) {
         let backGround = SKSpriteNode(imageNamed:"Result.png")
@@ -21,5 +23,11 @@ class ScoreScene: SKScene {
         self.addChild(backGround)
         backGround.position = CGPointMake(500,300)
         println("スコアは\(appDelegate.data)")
+
+        myLabel.text = "\(appDelegate.data*10)"
+        myLabel.fontSize = 200
+        myLabel.fontColor = UIColor.blackColor()
+        myLabel.position = CGPoint(x:self.frame.width*5/6, y:self.frame.height/4);
+        self.addChild(myLabel)
     }
 }
