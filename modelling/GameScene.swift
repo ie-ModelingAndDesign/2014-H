@@ -7,7 +7,6 @@
 //
 
 import SpriteKit
-
 import AVFoundation//追加
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -29,6 +28,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var fukidasi_flag = 0
     var timecount = 0
     var score = 0
+    var count = 0
     
     //takamiyagi chida tuika
     var Wallred1 : SKSpriteNode!
@@ -59,6 +59,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var backGround : SKSpriteNode!
     var w : CGFloat!
     var h : CGFloat!
+
+    var nowScene : SKScene?
+
+    var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
 
     override func didMoveToView(view: SKView) {
         
@@ -651,7 +655,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if (player.position.y - 30) <= self.frame.size.height * 0.16{
                     let myLabel = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
                     myLabel.text = "ゲームオーバー \(score)";
-                    //myLabel.text = "ゲームオーバー";
+
+                    score -= count
+                    appDelegate.data = score
+                    delegate_escape!.sceneEscape(self)
                     myLabel.fontSize = 48;
                     myLabel.fontColor = UIColor.redColor()
                     myLabel.position = CGPoint(x: self.frame.size.width * 0.5, y:self.frame.size.height * 0.5)
@@ -662,10 +669,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         delegate_escape!.sceneEscape(self)
                     }
                     
-                    
+
+                    delegate_escape!.sceneEscape(self)
                 }
                 else if (player.position.y - 30) <= self.frame.size.height * 0.3{
-                    score = score - 10
+                   // score = score - 10
+                    count += 1
                     if(score < 0){
                         score = 0
                     }
