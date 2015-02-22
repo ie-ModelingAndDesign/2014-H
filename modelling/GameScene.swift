@@ -23,13 +23,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //Takamiyagi Wall Move 変数? 指定
     var Wall1 : SKSpriteNode!
     var Wall2 : SKSpriteNode!
-    var movepos1: CGPoint!
-    var movepos2: CGPoint!
-    var moveposred : CGPoint!
     var timecount = 0
+    var score = 0
     
     //takamiyagi chida tuika
-    var Wallred : SKSpriteNode!
+    var Wallred1 : SKSpriteNode!
+    var Wallred2 : SKSpriteNode!
     var playergreen : SKSpriteNode!
     var playerblue : SKSpriteNode!
     var playerblack : SKSpriteNode!
@@ -58,6 +57,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var h : CGFloat!
 
     override func didMoveToView(view: SKView) {
+        
         
         canRestart = false
         moving = SKNode()
@@ -101,7 +101,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playergreen.position.x = self.frame.size.width * 0.2 //場所
         playergreen.position.y = self.frame.size.height * 0.9 //場所
         
-        self.playergreen.zPosition = -10
+        self.playergreen.zPosition = -110
         
         playergreen.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(5, 5))//当たり判定
         
@@ -124,9 +124,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerblue.position.x = self.frame.size.width * 0.23 //場所
         playerblue.position.y = self.frame.size.height * 0.9 //場所
         
-        self.playerblue.zPosition = -10
+        self.playerblue.zPosition = -110
         
         playerblue.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(5, 5))//当たり判定
+        
         
         
         // カテゴリを設定する。
@@ -147,9 +148,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerblack.position.x = self.frame.size.width * 0.17 //場所
         playerblack.position.y = self.frame.size.height * 0.9 //場所
         
-        self.playerblack.zPosition = -10
+        self.playerblack.zPosition = -110
         
         playerblack.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(5, 5))//当たり判定
+        
         
         
         // カテゴリを設定する。
@@ -166,29 +168,54 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(playerblack)
 
         
-        // 赤い正方形。ここを障害物と重ねる
+        // 赤い正方形1。ここを障害物と重ねる
+        Wallred1 = SKSpriteNode(color: UIColor.redColor(), size: CGSizeMake(5, 5))
         
-        Wallred = SKSpriteNode(color: UIColor.redColor(), size: CGSizeMake(10, 10))
+        
+        Wallred1.position.x = self.frame.size.width * 1.1 //場所
+        Wallred1.position.y = self.frame.size.height * 0.9 //場所
+        
+        self.Wallred1.zPosition = -110
+        
+        Wallred1.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(5, 5)) //当たり判定
         
         
-        Wallred.position.x = self.frame.size.width * 0.9 //場所
-        Wallred.position.y = self.frame.size.height * 0.9 //場所
-        
-        self.Wallred.zPosition = -10
-        
-        Wallred.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(10, 10)) //当たり判定
-        
-        Wallred.physicsBody?.affectedByGravity = false
+        Wallred1.physicsBody?.affectedByGravity = false
 //        Wallred.physicsBody?.dynamic = false
         
         
         // カテゴリを設定する。
-        Wallred.physicsBody?.categoryBitMask = redCategory
-        Wallred.physicsBody?.contactTestBitMask = greenCategory
-        Wallred.physicsBody?.contactTestBitMask = blueCategory
-        Wallred.physicsBody?.contactTestBitMask = blackCategory
+        Wallred1.physicsBody?.categoryBitMask = redCategory
+        Wallred1.physicsBody?.contactTestBitMask = greenCategory
+        Wallred1.physicsBody?.contactTestBitMask = blueCategory
+        Wallred1.physicsBody?.contactTestBitMask = blackCategory
         
-        self.addChild(Wallred)
+        self.addChild(Wallred1)
+        
+        
+        
+        // 赤い正方形2。ここを障害物と重ねる
+        Wallred2 = SKSpriteNode(color: UIColor.redColor(), size: CGSizeMake(5, 5))
+        
+        
+        Wallred2.position.x = self.frame.size.width * 0.9 //場所
+        Wallred2.position.y = self.frame.size.height * 0.9 //場所
+        
+        self.Wallred2.zPosition = -110
+        
+        Wallred2.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(5, 5)) //当たり判定
+        
+        Wallred2.physicsBody?.affectedByGravity = false
+        //        Wallred.physicsBody?.dynamic = false
+        
+        
+        // カテゴリを設定する。
+        Wallred2.physicsBody?.categoryBitMask = redCategory
+        Wallred2.physicsBody?.contactTestBitMask = greenCategory
+        Wallred2.physicsBody?.contactTestBitMask = blueCategory
+        Wallred2.physicsBody?.contactTestBitMask = blackCategory
+        
+        self.addChild(Wallred2)
         
         
         // 黄色正方形。ここを障害物と重ねる
@@ -198,7 +225,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         yellowSquare.position.x = self.frame.size.width * 0.2 //場所
         yellowSquare.position.y = self.frame.size.height * 0.21 //場所
         
-        self.yellowSquare.zPosition = 10
+        self.yellowSquare.zPosition = -110
         
 //        yellowSquare.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(50, 50)) //当たり判定
         
@@ -232,7 +259,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let WallTexture2 = SKTexture(imageNamed: "Object")
         Wall2 = SKSpriteNode(texture: WallTexture2)
         Wall2.setScale(0.4)
-        Wall2.position = CGPoint(x: self.frame.size.width * 0.9, y:self.frame.size.height * 0.15)
+        Wall2.position = CGPoint(x: self.frame.size.width * 1.1, y:self.frame.size.height * 0.15)
         Wall2.zPosition = 1
         self.addChild(Wall2)
         
@@ -316,12 +343,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(timecount <= 60){
             
         }
-        else if(timecount <= 360){
+        else if(timecount <= 660){
            wallmove()
         }
-        else{
+        else if(timecount <= 1260){
             wallmove2()
         }
+        else{
+            wallmove3()
+        }
+        
+        
+        
+        if(timecount % 60 == 0 && timecount != 0){
+            score = score + 1
+         }
+        
         
         timecount = timecount+1
         
@@ -367,7 +404,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func wallmove(){
         
 //        if(Wall1.position.x >= self.frame.size.width * 0.7){
-//            movepos1 = CGPoint(x: self.frame.size.width * -0.8, y:self.frame.size.height * 0.40)
+//            var movepos1 = CGPoint(x: self.frame.size.width * -0.8, y:self.frame.size.height * 0.40)
 //            let travelTime = SKAction.moveTo(movepos1, duration: 2.0)
 //            self.Wall1.runAction(travelTime)
 //        }
@@ -377,7 +414,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
 //        if(Wall2.position.x >= self.frame.size.width * 1.2){
-//            movepos2 = CGPoint(x: self.frame.size.width * -0.3, y:self.frame.size.height * 0.40)
+//            var movepos2 = CGPoint(x: self.frame.size.width * -0.3, y:self.frame.size.height * 0.40)
 //            let travelTime = SKAction.moveTo(movepos2, duration: 2.0)
 //            self.Wall2.runAction(travelTime)
 //        }
@@ -386,20 +423,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        }
         
         
-        if(Wall2.position.x >= self.frame.size.width * 0.8){
-            movepos2 = CGPoint(x: self.frame.size.width * 0.1, y:self.frame.size.height * 0.15)
-            moveposred = CGPoint(x: self.frame.size.width * 0.1, y:self.frame.size.height * 0.9)
-            let travelTime = SKAction.moveTo(movepos2, duration: 2.0)
+        if(Wall2.position.x >= self.frame.size.width * 1.0){
+            var movepos1 = CGPoint(x: self.frame.size.width * -0.1, y:self.frame.size.height * 0.15)
+            var moveposred1 = CGPoint(x: self.frame.size.width * -0.1, y:self.frame.size.height * 0.9)
+            let travelTime = SKAction.moveTo(movepos1, duration: 2.0)
             self.Wall2.runAction(travelTime)
-            let travelTimered = SKAction.moveTo(moveposred, duration : 2.0)
-            self.Wallred.runAction(travelTimered)
+            let travelTimered = SKAction.moveTo(moveposred1, duration : 2.0)
+            self.Wallred2.runAction(travelTimered)
         }
         
-        if(Wall2.position.x <= self.frame.size.width * 0.1) {
-            Wall2.position = CGPoint(x: self.frame.size.width * 0.9, y:self.frame.size.height * 0.15)
-            Wallred.position = CGPoint(x: self.frame.size.width * 0.9, y:self.frame.size.height * 0.9)
+        if(Wall2.position.x <= self.frame.size.width * 0.0) {
+            Wall2.position = CGPoint(x: self.frame.size.width * 1.1, y:self.frame.size.height * 0.15)
+            Wallred2.position = CGPoint(x: self.frame.size.width * 1.1, y:self.frame.size.height * 0.9)
             
-            //Wall_red()
         }
 
     }
@@ -407,48 +443,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //takamiyagi
     func wallmove2(){
-        if(Wall2.position.x >= self.frame.size.width * 0.8){
-            movepos2 = CGPoint(x: self.frame.size.width * 0.1, y:self.frame.size.height * 0.15)
-            moveposred = CGPoint(x: self.frame.size.width * 0.1, y:self.frame.size.height * 0.9)
-            let travelTime = SKAction.moveTo(movepos2, duration: 5.5)
+        if(Wall2.position.x >= self.frame.size.width * 1.0){
+            var movepos1 = CGPoint(x: self.frame.size.width * -0.1, y:self.frame.size.height * 0.15)
+            var moveposred1 = CGPoint(x: self.frame.size.width * -0.1, y:self.frame.size.height * 0.9)
+            let travelTime = SKAction.moveTo(movepos1, duration: 1.5)
             self.Wall2.runAction(travelTime)
-            self.Wall2.runAction(travelTime)
-            let travelTimered = SKAction.moveTo(moveposred, duration : 5.5)
-            self.Wallred.runAction(travelTimered)
+            let travelTimered = SKAction.moveTo(moveposred1, duration : 1.5)
+            self.Wallred1.runAction(travelTimered)
         }
         
-        if(Wall2.position.x <= self.frame.size.width * 0.1) {
-            Wall2.position = CGPoint(x: self.frame.size.width * 0.9, y:self.frame.size.height * 0.15)
-            Wallred.position = CGPoint(x: self.frame.size.width * 0.9, y:self.frame.size.height * 0.9)
-            
-            //Wall_red()
+        if(Wall2.position.x <= self.frame.size.width * 0.0) {
+            Wall2.position = CGPoint(x: self.frame.size.width * 1.1, y:self.frame.size.height * 0.15)
+            Wallred1.position = CGPoint(x: self.frame.size.width * 1.1, y:self.frame.size.height * 0.9)
         }
     }
     
     
-    
-    func Wall_red(){
-        Wallred = SKSpriteNode(color: UIColor.redColor(), size: CGSizeMake(10, 10))
+    func wallmove3(){
+        if(Wall2.position.x >= self.frame.size.width * 1.0){
+            var movepos1 = CGPoint(x: self.frame.size.width * -0.1, y:self.frame.size.height * 0.15)
+            var moveposred1 = CGPoint(x: self.frame.size.width * -0.1, y:self.frame.size.height * 0.9)
+            let travelTime = SKAction.moveTo(movepos1, duration: 1.0)
+            self.Wall2.runAction(travelTime)
+            let travelTimered = SKAction.moveTo(moveposred1, duration : 1.0)
+            self.Wallred1.runAction(travelTimered)
+        }
         
-        
-        Wallred.position.x = self.frame.size.width * 0.9 //場所
-        Wallred.position.y = self.frame.size.height * 0.05 //場所
-        
-        self.Wallred.zPosition = -10
-        
-        Wallred.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(10, 10)) //当たり判定
-        
-        Wallred.physicsBody?.affectedByGravity = false
-        //        Wallred.physicsBody?.dynamic = false
-        
-        
-        // カテゴリを設定する。
-        Wallred.physicsBody?.categoryBitMask = redCategory
-        Wallred.physicsBody?.contactTestBitMask = greenCategory
-        
-        self.addChild(Wallred)
+        if(Wall2.position.x <= self.frame.size.width * 0.0) {
+            Wall2.position = CGPoint(x: self.frame.size.width * 1.1, y:self.frame.size.height * 0.15)
+            Wallred1.position = CGPoint(x: self.frame.size.width * 1.1, y:self.frame.size.height * 0.9)
+        }
     }
 
+
+    
 
     func resetScene (){
         // Move player to original position and reset velocity
@@ -475,6 +503,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         check = 1
     }
+    
+    
+    
+    
     // 衝突したとき（赤と緑）。ここをいろいろ表示出来るようにする
     func didBeginContact(contact: SKPhysicsContact!) {
         
@@ -524,13 +556,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
               //  if(player.position.y >= self.frame.size.width * 0.8)
                 if (player.position.y - 30) <= self.frame.size.height * 0.16{
                     let myLabel = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
-                    myLabel.text = "ゲームオーバー";
+                    myLabel.text = "ゲームオーバー \(score)";
+                    //myLabel.text = "ゲームオーバー";
                     myLabel.fontSize = 48;
                     myLabel.fontColor = UIColor.redColor()
                     myLabel.position = CGPoint(x: self.frame.size.width * 0.5, y:self.frame.size.height * 0.5)
                     self.addChild(myLabel)
                 }
                 else if (player.position.y - 30) <= self.frame.size.height * 0.3{
+                    score = score - 10
+                    if(score < 0){
+                        score = 0
+                    }
+                    
                     let myLabel2 = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
                     myLabel2.text = "減速";
                     myLabel2.fontSize = 48;
@@ -544,13 +582,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondBody.categoryBitMask & blueCategory != 0 {
                 if (player.position.y - 30) <= self.frame.size.height * 0.16{
                     let myLabel = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
-                    myLabel.text = "ゲームオーバー";
+                    myLabel.text = "ゲームオーバー \(score)";
+                    
+                    //myLabel.text = "ゲームオーバー";
                     myLabel.fontSize = 48;
                     myLabel.fontColor = UIColor.redColor()
                     myLabel.position = CGPoint(x: self.frame.size.width * 0.5, y:self.frame.size.height * 0.5)
                     self.addChild(myLabel)
                 }
                 else if (player.position.y - 30) <= self.frame.size.height * 0.3{
+                    score = score - 10
+                    if(score < 0){
+                        score = 0
+                    }
+                    
                     let myLabel2 = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
                     myLabel2.text = "減速";
                     myLabel2.fontSize = 48;
@@ -564,13 +609,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondBody.categoryBitMask & blackCategory != 0 {
                 if (player.position.y - 30) <= self.frame.size.height * 0.16{
                     let myLabel = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
-                    myLabel.text = "ゲームオーバー";
+                    myLabel.text = "ゲームオーバー \(score)";
+                    //myLabel.text = "ゲームオーバー";
+                    delegate_escape!.sceneEscape(self)
                     myLabel.fontSize = 48;
                     myLabel.fontColor = UIColor.redColor()
                     myLabel.position = CGPoint(x: self.frame.size.width * 0.5, y:self.frame.size.height * 0.5)
                     self.addChild(myLabel)
                 }
                 else if (player.position.y - 30) <= self.frame.size.height * 0.3{
+                    score = score - 10
+                    if(score < 0){
+                        score = 0
+                    }
+
                     let myLabel2 = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
                     myLabel2.text = "減速";
                     myLabel2.fontSize = 48;
@@ -579,12 +631,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.addChild(myLabel2)
                 }
         }
-            
-    /*    else if thirdBody.categoryBitMask & yellowCategory != 0 && secondBody.categoryBitMask & greenCategory != 0 {
-            //ここを主人公と衝突したときに主人公が減速するようにする
-        //hogehoge
-            
-        }*/
     }
     
 }
