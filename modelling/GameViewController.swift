@@ -83,8 +83,7 @@ class GameViewController: UIViewController, SceneEscapeProtocol {
     func sceneEscape(scene: SKScene) {
         println("scene escape")
         if scene.isKindOfClass(GameScene) {
-        //    goScore()
-            goTitle()
+            goScore()
         }
         if scene.isKindOfClass(TitleScene) {
             goGame()
