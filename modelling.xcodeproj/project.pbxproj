@@ -30,6 +30,7 @@
 		6CC32A2C1A98E0CA00495AC6 /* Result.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CC32A2B1A98E0CA00495AC6 /* Result.png */; };
 		EC3522771A5E299100CF220A /* Object.png in Resources */ = {isa = PBXBuildFile; fileRef = EC3522761A5E299100CF220A /* Object.png */; };
 		EC40E9421A67590D00ED6844 /* damage.png in Resources */ = {isa = PBXBuildFile; fileRef = EC40E9411A67590D00ED6844 /* damage.png */; };
+		EC9348021A99F24F00964BCF /* fukidasi.png in Resources */ = {isa = PBXBuildFile; fileRef = EC9348011A99F24F00964BCF /* fukidasi.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		6CC32A2B1A98E0CA00495AC6 /* Result.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Result.png; sourceTree = "<group>"; };
 		EC3522761A5E299100CF220A /* Object.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Object.png; sourceTree = SOURCE_ROOT; };
 		EC40E9411A67590D00ED6844 /* damage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = damage.png; sourceTree = SOURCE_ROOT; };
+		EC9348011A99F24F00964BCF /* fukidasi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fukidasi.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 		6C17A6E01A25D12B004B2586 /* modelling */ = {
 			isa = PBXGroup;
 			children = (
+				EC9348011A99F24F00964BCF /* fukidasi.png */,
 				6CC32A1F1A98D2A900495AC6 /* asd.png */,
 				6C17A6E31A25D12B004B2586 /* AppDelegate.swift */,
 				6C17A6E51A25D12B004B2586 /* GameScene.sks */,
@@ -245,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C17A70A1A25D1A0004B2586 /* bou.png in Resources */,
+				EC9348021A99F24F00964BCF /* fukidasi.png in Resources */,
 				6C17A6F21A25D12C004B2586 /* LaunchScreen.xib in Resources */,
 				6CC32A2C1A98E0CA00495AC6 /* Result.png in Resources */,
 				21DA0DDF1A99034900C31042 /* harunopayapaya.mp3 in Resources */,

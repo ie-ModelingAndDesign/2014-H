@@ -23,6 +23,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //Takamiyagi Wall Move 変数? 指定
     var Wall1 : SKSpriteNode!
     var Wall2 : SKSpriteNode!
+    var fukidasi : SKSpriteNode!
+    var fukidasi_num = 0
+    var fukidasi_flag = 0
     var timecount = 0
     var score = 0
     var count = 0
@@ -269,7 +272,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         Wall2.zPosition = 1
         self.addChild(Wall2)
         
-        
+        var fukidasiTexture = SKTexture(imageNamed: "fukidasi")
+        fukidasi = SKSpriteNode(texture: fukidasiTexture)
+        fukidasi.setScale(0.4)
+        fukidasi.zPosition = -110
+        self.addChild(fukidasi)
+
         
         
         
@@ -304,7 +312,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
 
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        if (moving.speed > 0)  {
+        if(check == 2){
+        }else if(moving.speed > 0) {
         player.position.x == jumpNow.x + 1
             if(check == 1){
             for touch: AnyObject in touches {
@@ -346,7 +355,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
      override func update(currentTime: CFTimeInterval) {
         
         //　Takamiyagi
-        if(timecount <= 60){
+        if(timecount <= -1){
+            
+        }
+        else if(timecount <= 60){
             
         }
         else if(timecount <= 660){
@@ -359,30 +371,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             wallmove3()
         }
         
-        
-        
-        if(timecount % 60 == 0 && timecount != 0){
-            score = score + 1
-         }
+        if(timecount >= -420 && timecount < 0){
+            delegate_escape!.sceneEscape(self)
+        }
+
         
         
         timecount = timecount+1
         
-        
-        //naotarou
-        self.backGround.position.x -= 10
-        
-        self.player2.position.x -= 10
-        if(self.backGround.position.x <= self.frame.size.width * 0.5 && self.backGround.position.x >= self.frame.size.width * 0.5 - 10){
-            self.player2.position.x = self.backGround.position.x + self.frame.size.width
-            
-            
+        if(fukidasi_flag == 1){
+            if(timecount - fukidasi_num >= 60){
+                fukidasi.zPosition = -110
+                fukidasi_flag = 0
+            }
         }
         
-        if(self.player2.position.x <= self.frame.size.width * 0.5 && self.player2.position.x >= self.frame.size.width * 0.5 - 10){
-            self.backGround.position.x = self.player2.position.x + self.frame.size.width
+        
+        //naotarou and takamiyagi(止める処理)
+        
+        if(timecount % 60 == 0 && timecount != 0){
+            score = score + 1
         }
         
+        if(timecount > 0 ){
+          self.backGround.position.x -= 10
+          
+          self.player2.position.x -= 10
+          if(self.backGround.position.x <= self.frame.size.width * 0.5 && self.backGround.position.x >= self.frame.size.width * 0.5 - 10){
+              self.player2.position.x = self.backGround.position.x + self.frame.size.width
+            
+            
+          }
+        
+          if(self.player2.position.x <= self.frame.size.width * 0.5 && self.player2.position.x >= self.frame.size.width * 0.5 - 10){
+              self.backGround.position.x = self.player2.position.x + self.frame.size.width
+          }
+        }
         
         
         if(player.position.y < jumpNow.y){
@@ -407,6 +431,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     //takamiyagi
+    func player_fukidasi(){
+        fukidasi.zPosition = 10
+        fukidasi.position = CGPoint(x: player.position.x + 80, y: player.position.y + 50)
+        
+        
+        fukidasi_flag = 1
+        fukidasi_num = timecount
+    }
+    
+    
+    
     func wallmove(){
         
 //        if(Wall1.position.x >= self.frame.size.width * 0.7){
@@ -469,9 +504,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(Wall2.position.x >= self.frame.size.width * 1.0){
             var movepos1 = CGPoint(x: self.frame.size.width * -0.1, y:self.frame.size.height * 0.15)
             var moveposred1 = CGPoint(x: self.frame.size.width * -0.1, y:self.frame.size.height * 0.9)
-            let travelTime = SKAction.moveTo(movepos1, duration: 1.0)
+            let travelTime = SKAction.moveTo(movepos1, duration: 1.5)
             self.Wall2.runAction(travelTime)
-            let travelTimered = SKAction.moveTo(moveposred1, duration : 1.0)
+            let travelTimered = SKAction.moveTo(moveposred1, duration : 1.5)
             self.Wallred1.runAction(travelTimered)
         }
         
@@ -615,17 +650,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondBody.categoryBitMask & blackCategory != 0 {
                 if (player.position.y - 30) <= self.frame.size.height * 0.16{
                     let myLabel = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
-                    myLabel.text = "ゲームオーバー \(score)";
-                    //myLabel.text = "ゲームオーバー";
+                    //myLabel.text = "ゲームオーバー \(score)";
+                    myLabel.text = "ゲームオーバー"
+                    let playerTexture1 = SKTexture(imageNamed: "damage")
+                    playerTexture1.filteringMode = .Nearest
+                    let playerTexture2 = SKTexture(imageNamed: "damage")
+                    playerTexture2.filteringMode = .Nearest
+                    let stop = SKAction.animateWithTextures([playerTexture1, playerTexture2], timePerFrame: 0.05)
+                    let dlap = SKAction.repeatActionForever(stop)
+                    player.runAction(dlap)
+                    check = 2
+
                     score -= count
                     appDelegate.data = score
-                    delegate_escape!.sceneEscape(self)
                     myLabel.fontSize = 48;
                     myLabel.fontColor = UIColor.redColor()
                     myLabel.position = CGPoint(x: self.frame.size.width * 0.5, y:self.frame.size.height * 0.5)
                     self.addChild(myLabel)
-
-                    delegate_escape!.sceneEscape(self)
+                    
+                    timecount = -600
+                    if(timecount >= -420 && timecount < 0){
+                        delegate_escape!.sceneEscape(self)
+                    }
                 }
                 else if (player.position.y - 30) <= self.frame.size.height * 0.3{
                    // score = score - 10
@@ -634,12 +680,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         score = 0
                     }
 
-                    let myLabel2 = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
+/*                    let myLabel2 = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
                     myLabel2.text = "減速";
                     myLabel2.fontSize = 48;
                     myLabel2.fontColor = UIColor.redColor()
                     myLabel2.position = CGPoint(x: self.frame.size.width * 0.5, y:self.frame.size.height * 0.8)
-                    self.addChild(myLabel2)
+                    self.addChild(myLabel2)*/
+                    
+                    player_fukidasi()
                 }
         }
     }
