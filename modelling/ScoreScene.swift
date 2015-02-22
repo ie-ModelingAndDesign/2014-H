@@ -30,4 +30,8 @@ class ScoreScene: SKScene {
         myLabel.position = CGPoint(x:self.frame.width*5/6, y:self.frame.height/4);
         self.addChild(myLabel)
     }
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        delegate_escape!.sceneEscape(self)
+        myLabel.hidden = !myLabel.hidden
+    }
 }
