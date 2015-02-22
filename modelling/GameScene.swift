@@ -314,7 +314,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
 
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        if (moving.speed > 0)  {
+        if(check == 2){
+        }else if(moving.speed > 0) {
         player.position.x == jumpNow.x + 1
             if(check == 1){
             for touch: AnyObject in touches {
@@ -656,6 +657,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     let myLabel = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
                     //myLabel.text = "ゲームオーバー \(score)";
                     myLabel.text = "ゲームオーバー"
+                    let playerTexture1 = SKTexture(imageNamed: "damage")
+                    playerTexture1.filteringMode = .Nearest
+                    let playerTexture2 = SKTexture(imageNamed: "damage")
+                    playerTexture2.filteringMode = .Nearest
+                    let stop = SKAction.animateWithTextures([playerTexture1, playerTexture2], timePerFrame: 0.05)
+                    let dlap = SKAction.repeatActionForever(stop)
+                    player.runAction(dlap)
+                    check = 2
+
                     score -= count
                     appDelegate.data = score
                     myLabel.fontSize = 48;
