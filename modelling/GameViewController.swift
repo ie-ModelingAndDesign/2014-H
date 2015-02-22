@@ -43,7 +43,7 @@ class GameViewController: UIViewController, SceneEscapeProtocol {
     }
 
     func goGame() {
-        let gameScene = GameScene(size: CGSizeMake(1024, 400))
+        let gameScene = GameScene(size: CGSizeMake(800, 400))
         gameScene.delegate_escape = self
         gameScene.scaleMode = SKSceneScaleMode.AspectFill
         //self.skView!.presentScene(gameScene)
