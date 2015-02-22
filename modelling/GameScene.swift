@@ -272,14 +272,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         Wall2.zPosition = 1
         self.addChild(Wall2)
         
-        /*
-        let fukidasiTexture = SKTexture(imageNamed: "fukidasi")
+        var fukidasiTexture = SKTexture(imageNamed: "fukidasi")
         fukidasi = SKSpriteNode(texture: fukidasiTexture)
         fukidasi.setScale(0.4)
-        fukidasi.position = CGPoint(x: player.position.x + 80, y: player.position.y + 50)
-        fukidasi.zPosition = 100
+        fukidasi.zPosition = -110
         self.addChild(fukidasi)
-        */
+
         
         
         
@@ -434,12 +432,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //takamiyagi
     func player_fukidasi(){
-        let fukidasiTexture = SKTexture(imageNamed: "fukidasi")
-        fukidasi = SKSpriteNode(texture: fukidasiTexture)
-        fukidasi.setScale(0.4)
+        fukidasi.zPosition = 10
         fukidasi.position = CGPoint(x: player.position.x + 80, y: player.position.y + 50)
-        fukidasi.zPosition = 100
-        self.addChild(fukidasi)
+        
         
         fukidasi_flag = 1
         fukidasi_num = timecount
@@ -509,9 +504,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(Wall2.position.x >= self.frame.size.width * 1.0){
             var movepos1 = CGPoint(x: self.frame.size.width * -0.1, y:self.frame.size.height * 0.15)
             var moveposred1 = CGPoint(x: self.frame.size.width * -0.1, y:self.frame.size.height * 0.9)
-            let travelTime = SKAction.moveTo(movepos1, duration: 1.0)
+            let travelTime = SKAction.moveTo(movepos1, duration: 1.5)
             self.Wall2.runAction(travelTime)
-            let travelTimered = SKAction.moveTo(moveposred1, duration : 1.0)
+            let travelTimered = SKAction.moveTo(moveposred1, duration : 1.5)
             self.Wallred1.runAction(travelTimered)
         }
         
