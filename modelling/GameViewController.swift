@@ -43,12 +43,12 @@ class GameViewController: UIViewController, SceneEscapeProtocol {
     }
 
     func goGame() {
-        let gameScene = GameScene(size: CGSizeMake(1024, 768))
+        let gameScene = GameScene(size: CGSizeMake(1024, 400))
         gameScene.delegate_escape = self
         gameScene.scaleMode = SKSceneScaleMode.AspectFill
-        self.skView!.presentScene(gameScene)
+        //self.skView!.presentScene(gameScene)
 
-        if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
+        //if let gameScene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
             // Configure the view.
             let skView = self.view as SKView
             skView.showsFPS = true
@@ -58,10 +58,10 @@ class GameViewController: UIViewController, SceneEscapeProtocol {
             skView.ignoresSiblingOrder = true
 
             /* Set the scale mode to scale to fit the window */
-            scene.scaleMode = .AspectFill
-            scene.size = skView.frame.size
-            skView.presentScene(scene)
-        }
+            //gameScene.scaleMode = .AspectFill
+            //gameScene.size = skView.frame.size
+            skView.presentScene(gameScene)
+        //}
     }
 
     func goTitle() {
@@ -72,6 +72,7 @@ class GameViewController: UIViewController, SceneEscapeProtocol {
     }
 
     func goScore() {
+        println("go score")
         let scoreScene = ScoreScene(size: CGSizeMake(1024, 768))
         scoreScene.delegate_escape = self
         scoreScene.scaleMode = SKSceneScaleMode.AspectFill
@@ -80,6 +81,7 @@ class GameViewController: UIViewController, SceneEscapeProtocol {
 
     // デリゲートメソッドの記述。
     func sceneEscape(scene: SKScene) {
+        println("scene escape")
         if scene.isKindOfClass(GameScene) {
             goScore()
         }
