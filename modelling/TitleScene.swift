@@ -47,11 +47,11 @@ class TitleScene: SKScene {
         //        self.addChild(Start)
 */
 
-        startButton.frame = CGRectMake(0,0,50,50)
+        startButton.frame = CGRectMake(0,0,100,100)
         startButton.layer.masksToBounds = true
         startButton.tag = 4
         startButton.layer.cornerRadius = 20.0
-        startButton.layer.position = CGPoint(x: self.view!.frame.width/4, y:self.view!.frame.height/1.8)
+        startButton.layer.position = CGPoint(x: self.view!.frame.width/6, y:self.view!.frame.height/1.3)
         startButton.setImage(image, forState: .Normal)
         startButton.addTarget(self, action: "clickButton:", forControlEvents: .TouchUpInside)
         self.view!.addSubview(startButton);
