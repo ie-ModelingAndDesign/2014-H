@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import AVFoundation//追加
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
 
@@ -65,6 +66,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         canRestart = false
         moving = SKNode()
         self.addChild(moving)
+        importBGM("harunopayapaya.mp3")
 
         // setup physics
         self.physicsWorld.gravity = CGVectorMake( 0, -9.8 )
@@ -557,7 +559,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.addChild(myLabel)*/
                 
               //  if(player.position.y >= self.frame.size.width * 0.8)
-                if (player.position.y - 30) <= self.frame.size.height * 0.16{
+                /*if (player.position.y - 30) <= self.frame.size.height * 0.16{
                     let myLabel = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
                     myLabel.text = "ゲームオーバー \(score)";
                     //myLabel.text = "ゲームオーバー";
@@ -578,12 +580,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     myLabel2.fontColor = UIColor.redColor()
                     myLabel2.position = CGPoint(x: self.frame.size.width * 0.5, y:self.frame.size.height * 0.8)
                     self.addChild(myLabel2)
-                }
+                }*/
         }
         
         if firstBody.categoryBitMask & redCategory != 0 &&
             secondBody.categoryBitMask & blueCategory != 0 {
-                if (player.position.y - 30) <= self.frame.size.height * 0.16{
+                /*if (player.position.y - 30) <= self.frame.size.height * 0.16{
                     let myLabel = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
                     myLabel.text = "ゲームオーバー \(score)";
                     
@@ -605,7 +607,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     myLabel2.fontColor = UIColor.redColor()
                     myLabel2.position = CGPoint(x: self.frame.size.width * 0.5, y:self.frame.size.height * 0.8)
                     self.addChild(myLabel2)
-                }
+                }*/
         }
         
         if firstBody.categoryBitMask & redCategory != 0 &&
@@ -639,5 +641,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    //追加
+    var BGM:AVAudioPlayer!
+    
+    func importBGM(filename: String){
+        let url = NSBundle.mainBundle().URLForResource(filename, withExtension: nil)
+        if(url == nil){
+        println("aa:\(filename)")
+        return
+        }
+        var error: NSError? = nil
+        BGM = AVAudioPlayer(contentsOfURL: url, error: &error)
+        if BGM == nil{
+            println("Could not create audio player: ¥(error!)")
+            return
+        }
+        
+        BGM.numberOfLoops = -1
+        BGM.prepareToPlay()
+        BGM.play()
+        
+    }
+    
+    
+    
 }
+
+
+
+
+
+
+
 
