@@ -609,7 +609,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if firstBody.categoryBitMask & redCategory != 0 &&
             secondBody.categoryBitMask & blackCategory != 0 {
-             /*   if (player.position.y - 30) <= self.frame.size.height * 0.16{
+                if (player.position.y - 30) <= self.frame.size.height * 0.16{
                     let myLabel = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
                     myLabel.text = "ゲームオーバー \(score)";
                     //myLabel.text = "ゲームオーバー";
@@ -631,7 +631,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     myLabel2.fontColor = UIColor.redColor()
                     myLabel2.position = CGPoint(x: self.frame.size.width * 0.5, y:self.frame.size.height * 0.8)
                     self.addChild(myLabel2)
-                }*/
+                }
         }
     }
     
