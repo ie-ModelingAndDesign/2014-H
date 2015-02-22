@@ -654,23 +654,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondBody.categoryBitMask & blackCategory != 0 {
                 if (player.position.y - 30) <= self.frame.size.height * 0.16{
                     let myLabel = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
-                    myLabel.text = "ゲームオーバー \(score)";
-
+                    //myLabel.text = "ゲームオーバー \(score)";
+                    myLabel.text = "ゲームオーバー"
                     score -= count
                     appDelegate.data = score
-                    delegate_escape!.sceneEscape(self)
                     myLabel.fontSize = 48;
                     myLabel.fontColor = UIColor.redColor()
                     myLabel.position = CGPoint(x: self.frame.size.width * 0.5, y:self.frame.size.height * 0.5)
                     self.addChild(myLabel)
                     
                     timecount = -600
-                    if(timecount >= -420){
+                    if(timecount >= -420 && timecount < 0){
                         delegate_escape!.sceneEscape(self)
                     }
-                    
-
-                    delegate_escape!.sceneEscape(self)
                 }
                 else if (player.position.y - 30) <= self.frame.size.height * 0.3{
                    // score = score - 10
