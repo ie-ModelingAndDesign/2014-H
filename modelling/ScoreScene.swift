@@ -13,11 +13,13 @@ import UIKit
 class ScoreScene: SKScene {
 
     var delegate_escape: SceneEscapeProtocol?
+    var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
     override func didMoveToView(view: SKView) {
         let backGround = SKSpriteNode(imageNamed:"Result.png")
         backGround.size = frame.size
         self.addChild(backGround)
         backGround.position = CGPointMake(500,300)
+        println(appDelegate.data)
     }
 }

@@ -8,7 +8,6 @@
 
 import SpriteKit
 
-
 class GameScene: SKScene, SKPhysicsContactDelegate {
 
     var delegate_escape: SceneEscapeProtocol?
@@ -57,6 +56,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var h : CGFloat!
 
     var nowScene : SKScene?
+
+    var appDelegate:AppDelegate = UIApplication.sharedApplication().delegate as AppDelegate
 
     override func didMoveToView(view: SKView) {
         
@@ -613,6 +614,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     let myLabel = SKLabelNode(fontNamed:"HelveticaNeue-Bold")
                     myLabel.text = "ゲームオーバー \(score)";
                     //myLabel.text = "ゲームオーバー";
+                    appDelegate.data = score
                     delegate_escape!.sceneEscape(self)
                     myLabel.fontSize = 48;
                     myLabel.fontColor = UIColor.redColor()
