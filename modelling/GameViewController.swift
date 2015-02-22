@@ -81,19 +81,8 @@ class GameViewController: UIViewController, SceneEscapeProtocol {
     // デリゲートメソッドの記述。
     func sceneEscape(scene: SKScene) {
         if scene.isKindOfClass(GameScene) {
-            goScore()
-        }
-        if scene.isKindOfClass(TitleScene) {
-            goGame()
-        }
-        if scene.isKindOfClass(ScoreScene) {
+        //    goScore()
             goTitle()
-        }
-    }
-
-    func sceneEscape2(scene: SKScene) {
-        if scene.isKindOfClass(GameScene) {
-            goScore()
         }
         if scene.isKindOfClass(TitleScene) {
             goGame()

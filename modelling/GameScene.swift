@@ -57,6 +57,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var w : CGFloat!
     var h : CGFloat!
 
+    var nowScene : SKScene?
+
     override func didMoveToView(view: SKView) {
         
         canRestart = false
@@ -569,6 +571,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     myLabel.fontColor = UIColor.redColor()
                     myLabel.position = CGPoint(x: self.frame.size.width * 0.5, y:self.frame.size.height * 0.5)
                     self.addChild(myLabel)
+
+                    delegate_escape!.sceneEscape(self)
                 }
                 else if (player.position.y - 30) <= self.frame.size.height * 0.3{
                     let myLabel2 = SKLabelNode(fontNamed:"HelveticaNeue-Bold")

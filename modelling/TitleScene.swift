@@ -63,8 +63,6 @@ class TitleScene: SKScene {
         startButton.hidden = !startButton.hidden
     }
     
-    
-    
     override func update(currentTime: CFTimeInterval) {}
     
 }
