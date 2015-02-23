@@ -185,7 +185,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         Wallred1.position.x = self.frame.size.width * 1.1 //場所
         Wallred1.position.y = self.frame.size.height * 0.9 //場所
         
-        self.Wallred1.zPosition = 110
+        self.Wallred1.zPosition = -110
         
         Wallred1.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(5, 5)) //当たり判定
         
@@ -211,7 +211,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         Wallred2.position.x = self.frame.size.width * 1.1 //場所
         Wallred2.position.y = self.frame.size.height * 0.9 //場所
         
-        self.Wallred2.zPosition = 110
+        self.Wallred2.zPosition = -110
         
         Wallred2.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(5, 5)) //当たり判定
         
