@@ -377,6 +377,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         else if(timecount <= 3060){
             wallmove5()
         }
+        else if(timecount <= 3660){
+            wallmove6()
+        }
+        else if(timecount <= 3960){
+            wallmove5()
+        }
+        else if(timecount <= 4200){
+            wallmove()
+        }
         else{
             wallmove6()
         }
